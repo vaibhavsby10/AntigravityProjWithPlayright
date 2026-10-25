@@ -1,0 +1,12 @@
+# Copy this file to terraform.tfvars to customize your deployment:
+# cp terraform.tfvars.example terraform.tfvars
+
+aws_region        = "us-east-1"
+instance_type     = "t2.micro"
+instance_name     = "ubuntu-nginx-login-server"
+
+# (Optional) Uncomment and specify an existing AWS key pair name if you need SSH access:
+# key_name        = "my-aws-key-pair"
+
+# (Optional) Restrict SSH to your own IP address for security:
+# ssh_allowed_cidrs = ["YOUR_IP_ADDRESS/32"]
