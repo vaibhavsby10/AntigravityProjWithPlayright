@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation Bar */
+    header {
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .user-badge {
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .user-badge strong {
+      color: #ffffff;
+    }
+
+    .btn-logout {
+      background: #dc2626;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-logout:hover {
+      background: #b91c1c;
+    }
+
+    .btn-logout:active {
+      transform: scale(0.97);
+    }
+
+    /* Main Dashboard Content */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .welcome-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome-card h2 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .welcome-card p {
+      color: #94a3b8;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #22c55e;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">App Portal</div>
+    <div class="user-controls">
+      <span class="user-badge">User: <strong id="headerUsername">...</strong></span>
+      <button class="btn-logout" id="logoutBtn">Log Out</button>
+    </div>
+  </header>
+
+  <!-- Content Area -->
+  <main>
+    <div class="welcome-card">
+      <div class="status-indicator">
+        <span class="dot"></span> Logged In
+      </div>
+      <h2 style="margin-top: 18px;">Welcome, <span id="displayUsername">User</span>!</h2>
+      <p>
+        You have successfully logged in using your default credentials. Click the <strong>Log Out</strong> button in the top right to end your session.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    // 1. Route Protection: Check if user is logged in
+    const currentUser = sessionStorage.getItem('currentUser');
+
+    if (!currentUser) {
+      // If not logged in, redirect immediately to login.html
+      window.location.href = 'login.html';
+    } else {
+      // 2. Display the username in the header and card
+      document.getElementById('headerUsername').textContent = currentUser;
+      document.getElementById('displayUsername').textContent = currentUser;
+    }
+
+    // 3. Logout action
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      // Clear session data
+      sessionStorage.removeItem('currentUser');
+
+      // Redirect back to login page
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

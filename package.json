@@ -1,0 +1,17 @@
+{
+  "name": "antigravity-auth-app",
+  "version": "1.0.0",
+  "description": "HTML authentication portal with automated Playwright test cases",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "record": "playwright codegen http://localhost:3050/login.html",
+    "browse": "node browse.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}
